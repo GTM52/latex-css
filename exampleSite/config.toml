@@ -1,4 +1,4 @@
-baseURL = 'http://www.GTM52.github.io/LaTeX-css/'
+baseURL = 'https://gtm52.github.io/latex-css/'
 languageCode = 'en-us'
 title = '$\LaTeX$.css'
 
