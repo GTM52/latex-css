@@ -1,11 +1,14 @@
+{{ $bodyClass := "latex-dark-auto" }} {{ if eq .Site.Params.skin "light" }} {{
+$bodyClass = "" }} {{ else if eq .Site.Params.skin "dark" }} {{ $bodyClass =
+"latex-dark" }} {{ end }}
 <!DOCTYPE html>
-<html>
-    {{- partial "head.html" . -}}
-    <body>
-        {{- partial "header.html" . -}}
-        <div id="content">
-        {{- block "main" . }}{{- end }}
-        </div>
-        {{- partial "footer.html" . -}}
-    </body>
+<html lang="en">
+	<head>
+		{{ partial "head.html" . }}
+	</head>
+	<body class="{{ $bodyClass }}">
+		<header>{{ partial "header.html" . }}</header>
+		<main>{{ block "main" . }}{{ end }}</main>
+		<footer>{{ partial "footer.html" . }}</footer>
+	</body>
 </html>

@@ -1,0 +1,3 @@
+{{ $title := "theorem" }} {{ $counter := "theorem" }} {{ with .Get 0 }} {{
+$title = . }} {{ end }} {{ with .Get 1 }} {{ $counter = . }} {{ end }}
+<p title="{{ $title }}" class="{{ $counter }}"></p>

@@ -1,0 +1,15 @@
+{{ $format := .Get 0 }}{{ $content := .Get 1 }}{{ if eq $format "b" }}<b
+	>{{ $content }}</b
+>{{ else if eq $format "strong" }}<strong>{{ $content }}</strong>{{ else if eq
+$format "em" }}<em>{{ $content }}</em>{{ else if eq $format "i" }}<i
+	>{{ $content }}</i
+>{{ else if eq $format "small" }}<small>{{ $content }}</small>{{ else if eq
+$format "sub" }}<sub>{{ $content }}</sub>{{ else if eq $format "sup" }}<sup
+	>{{ $content }}</sup
+>{{ else if eq $format "ins" }}<ins>{{ $content }}</ins>{{ else if eq $format
+"del" }}<del>{{ $content }}</del>{{ else if eq $format "mark" }}<mark
+	>{{ $content }}</mark
+>{{ else if eq $format "kbd" }}<kbd>{{ $content }}</kbd>{{ else if eq $format
+"center" }}
+<center>{{ $content }}</center>
+{{ end }} {{- "" -}}

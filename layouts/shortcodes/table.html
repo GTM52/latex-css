@@ -1,0 +1,3 @@
+{{ .Inner | markdownify }} {{ if .Get "caption" }}
+<div class="caption-table">{{ .Get "caption" | markdownify }}</div>
+{{ end }}

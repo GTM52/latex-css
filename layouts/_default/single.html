@@ -1,0 +1,25 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+<div class="author">
+	{{ with .Params.author }} {{ . }}
+	<br />
+	{{ end }} {{ .Date | time.Format ":date_long" }}
+</div>
+{{ with .Params.abstract }}
+<div class="abstract">
+	<h2>Abstract</h2>
+	{{ . | markdownify }}
+</div>
+{{ end }} {{ with .Params.tags }}
+<div>
+	<b>Keywords: </b>
+	{{ range . }}
+	<a class="link" href='{{ "tags" | absURL }}/{{ . | urlize }}'>#{{ . }}</a>
+	{{ end }}
+</div>
+{{ end }} {{ if cond (ne .Params.toc nil) .Params.toc .Site.Params.toc }}
+<div>
+	<h2>Table of Contents</h2>
+	<div class="title">{{ .TableOfContents }}</div>
+</div>
+{{ end }} {{ .Content }} {{ end }}

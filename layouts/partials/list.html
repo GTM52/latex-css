@@ -1,0 +1,20 @@
+{{ range . }}
+<div class="post">
+	<h2 class="post-title">
+		<a href="{{ .Permalink }}" class="title">{{ .Title }}</a>
+		<time>{{ .PublishDate | time.Format ":date_long" }}</time>
+	</h2>
+	{{ if ne .Params.tags nil }}
+	<div>
+		<b>Keywords:</b>
+		{{ range .Params.tags }}
+		<a href='{{ "tags" | absURL }}/{{ . | urlize }}'>#{{ . }}</a>
+		{{ end }}
+	</div>
+	{{ end }}
+	<div>
+		{{ if isset .Params "abstract" }} {{ .Params.abstract | markdownify }}
+		{{ else }} {{ .Summary }} {{ end }}
+	</div>
+</div>
+{{ end }}

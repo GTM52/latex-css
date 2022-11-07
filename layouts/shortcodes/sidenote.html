@@ -1,0 +1,16 @@
+{{ $id := md5 .Inner }}{{ if .Get 1 }}<label
+	for="sn-{{ $id }}"
+	class="sidenote-toggle"
+	>{{ .Get 1 }}<input
+		type="checkbox"
+		id="sn-{{ $id }}"
+		class="sidenote-toggle" /><span class="sidenote"
+		>{{- .Get 0 | markdownify -}}</span
+	></label
+>
+{{ else }}<label for="sn-{{ $id }}" class="sidenote-toggle sidenote-number"
+	><input type="checkbox" id="sn-{{ $id }}" class="sidenote-toggle" /><span
+		class="sidenote">
+		{{- .Get 0 -}}</span
+	></label
+>{{ end }} {{- "" -}}

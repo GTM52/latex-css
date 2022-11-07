@@ -1,3 +1,13 @@
-baseURL = 'http://example.org/'
+baseURL = 'http://www.GTM52.github.io/LaTeX-css/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = '$\LaTeX$.css'
+
+[params]
+	toc = true
+	katex = true
+	skin = 'auto'
+	headerNav = [
+		{ name = 'Tags', url = 'tags/' },
+		{ name = 'Categories', url = 'categories/' },
+		{ name = 'About', url = 'about/' },
+	]

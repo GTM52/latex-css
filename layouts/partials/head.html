@@ -1,0 +1,41 @@
+{{ if .IsHome }}
+<title>{{ replaceRE "[\\\\\\$]" "" .Title }}</title>
+{{ else }}
+<title>
+	{{ replaceRE "[\\\\\\$]" "" .Title }} | {{ replaceRE "[\\\\\\$]" ""
+	.Site.Title }}
+</title>
+{{ end }} {{ if cond (ne .Params.katex nil) .Params.katex .Site.Params.katex }}
+<link
+	rel="stylesheet"
+	href='{{ "assets/css/katex.patched.min.css" | absURL }}' />
+<script
+	class="prerender"
+	defer
+	src='{{ "assets/js/katex.min.js" | absURL }}'></script>
+<script
+	class="prerender"
+	defer
+	src='{{ "assets/js/auto-render.min.js" | absURL }}'></script>
+<script class="prerender" defer>
+	document.addEventListener('DOMContentLoaded', function () {
+		renderMathInElement(document.body, {
+			delimiters: [
+				{ left: '$$', right: '$$', display: true },
+				{ left: '$', right: '$', display: false },
+				{ left: '\\(', right: '\\)', display: false },
+				{ left: '\\[', right: '\\]', display: true },
+			],
+			throwOnError: false,
+		});
+	});
+</script>
+{{ end }}
+<link
+	rel="stylesheet"
+	href='{{ "assets/css/style.patched.min.css" | absURL }}' />
+<link rel="stylesheet" href='{{ "assets/css/prism.css" | absURL }}' />
+<script
+	class="prerender"
+	defer
+	src='{{ "assets/js/prism.js" | absURL }}'></script>

@@ -1,0 +1,15 @@
+{{ range . }}
+<div class="term">
+	<h2>
+		<a href="{{ .Permalink }}">{{ .Title }}</a>
+	</h2>
+	<ul>
+		{{ range .Pages }}
+		<li class="post-title">
+			<a href="{{ .Permalink }}">{{ .Title }}</a>
+			<time>{{ .PublishDate | time.Format ":date_long" }}</time>
+		</li>
+		{{ end }}
+	</ul>
+</div>
+{{ end }}
