@@ -10,9 +10,9 @@ toc: true
 
 ## Features
 *	$\LaTeX$ layout, dark mode support
-*	`theorem`, `proof`, `table` and `figure` environments supported
-*	JavaScript-free (todo)
-*	VS Code syntax highlighting (todo)
+*	`theorem`, `proof`, `table` and `figure` environments support
+*	JavaScript-free
+*	VS Code syntax highlighting
 
 ## Installation
 

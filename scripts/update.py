@@ -5,8 +5,7 @@ import requests
 assets = {
     'https://raw.githubusercontent.com/vincentdoerig/latex-css/master/': [
         'fonts/LM-regular.woff2', 'fonts/LM-italic.woff2',
-        'fonts/LM-bold.woff2', 'fonts/LM-bold-italic.woff2', 'style.css',
-        'prism/prism.css', 'prism/prism.js'
+        'fonts/LM-bold.woff2', 'fonts/LM-bold-italic.woff2', 'style.css'
     ],
     'https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/': [
         'fonts/KaTeX_AMS-Regular.woff2',
@@ -29,11 +28,7 @@ assets = {
         'fonts/KaTeX_Size3-Regular.woff2',
         'fonts/KaTeX_Size4-Regular.woff2',
         'fonts/KaTeX_Typewriter-Regular.woff2',
-        'katex.js',
-        'contrib/auto-render.js',
         'katex.css',
-        'katex.mjs',
-        'contrib/auto-render.mjs',
     ],
 }
 
@@ -65,13 +60,19 @@ patches = {
         "-14rem",  # sidenote margin
         r"(?<=width: )18vw":
         "13rem",  # sidenote width
+        r"(?<=monospace;)\n  font-size: 85%;":
+        "",
+        r"\n  font-size: 95%;":
+        "",
         r"(?<=:root {)":
         """
+  --selection-bg-color: #add6ff;
   --webkit-scrollbar: hsl(0, 0%, 98%);
   --webkit-scrollbar-thumb: hsl(0, 0%, 67%);
   --webkit-scrollbar-thumb-hover: hsl(0, 0%, 53%);""",
         r"(?<=latex-dark \{)|(?<=latex-dark-auto \{)":
         """
+  --selection-bg-color: #264f78;
   --webkit-scrollbar: hsl(0, 0%, 16%);
   --webkit-scrollbar-thumb: hsl(0, 0%, 33%);
   --webkit-scrollbar-thumb-hover: hsl(0, 0%, 47%);""",
@@ -173,12 +174,34 @@ figure {
   font-weight: bold;
 }
 
-:root {
-	--selection-bg-color: #264f78;
-}
-
 ::selection {
 	background-color: var(--selection-bg-color);
+}
+
+[data-light-bg] {
+  background: attr(data-light-bg);
+}
+
+[data-light-color] {
+  color: attr(data-light-color color);
+}
+
+.latex-dark [data-dark-bg] {
+  background: attr(data-dark-bg color);
+}
+
+.latex-dark [data-dark-color] {
+  color: attr(data-dark-color color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .latex-dark-auto [data-dark-bg] {
+    background: attr(data-dark-bg color);
+  }
+
+  .latex-dark-auto [data-dark-color] {
+    color: attr(data-dark-color color);
+  }
 }
 """,
     },

@@ -17,6 +17,18 @@ jobs:
             - name: Build
               working-directory: exampleSite
               run: hugo --minify --theme ../..
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: latest
+            - name: Install dependencies
+              run: npm install jsdom katex shiki@0.10.1
+            - name: Patch auto-render.js
+              run: |
+                  sed -i 's/Node.TEXT_NODE/3/g' node_modules/katex/dist/contrib/auto-render.js
+            - name: Prerender
+              run: |
+                  node scripts/prerender.js $(find "$(cd exampleSite/public; pwd)" -type f -name "*.html" | paste -sd " ")
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v1
               with:

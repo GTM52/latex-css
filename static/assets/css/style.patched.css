@@ -93,6 +93,7 @@
 }
 
 :root {
+  --selection-bg-color: #add6ff;
   --webkit-scrollbar: hsl(0, 0%, 98%);
   --webkit-scrollbar-thumb: hsl(0, 0%, 67%);
   --webkit-scrollbar-thumb-hover: hsl(0, 0%, 53%);
@@ -109,6 +110,7 @@
 }
 
 .latex-dark {
+  --selection-bg-color: #264f78;
   --webkit-scrollbar: hsl(0, 0%, 16%);
   --webkit-scrollbar-thumb: hsl(0, 0%, 33%);
   --webkit-scrollbar-thumb-hover: hsl(0, 0%, 47%);
@@ -127,6 +129,7 @@
 
 @media (prefers-color-scheme: dark) {
    .latex-dark-auto {
+  --selection-bg-color: #264f78;
   --webkit-scrollbar: hsl(0, 0%, 16%);
   --webkit-scrollbar-thumb: hsl(0, 0%, 33%);
   --webkit-scrollbar-thumb-hover: hsl(0, 0%, 47%);
@@ -251,7 +254,6 @@ pre,
 kbd {
   font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
-  font-size: 85%;
 }
 pre {
   padding: 1rem 1.4rem;
@@ -703,11 +705,33 @@ figure {
   font-weight: bold;
 }
 
-:root {
-	--selection-bg-color: #264f78;
-}
-
 ::selection {
 	background-color: var(--selection-bg-color);
+}
+
+[data-light-bg] {
+  background: attr(data-light-bg);
+}
+
+[data-light-color] {
+  color: attr(data-light-color color);
+}
+
+.latex-dark [data-dark-bg] {
+  background: attr(data-dark-bg color);
+}
+
+.latex-dark [data-dark-color] {
+  color: attr(data-dark-color color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .latex-dark-auto [data-dark-bg] {
+    background: attr(data-dark-bg color);
+  }
+
+  .latex-dark-auto [data-dark-color] {
+    color: attr(data-dark-color color);
+  }
 }
 

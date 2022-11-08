@@ -1,47 +1,29 @@
-{{ if .IsHome }}
-<title>{{ replaceRE "[\\\\\\$]" "" .Title }}</title>
-{{ else }}
-<title>
-	{{ replaceRE "[\\\\\\$]" "" .Title }} | {{ replaceRE "[\\\\\\$]" ""
-	.Site.Title }}
-</title>
-{{ end }} {{ if cond (ne .Params.katex nil) .Params.katex .Site.Params.katex }}
-<link
-	rel="stylesheet"
-	href='{{ "assets/css/katex.patched.min.css" | absURL }}' />
-<script
-	class="prerender"
-	defer
-	src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js"></script>
-<script
-	class="prerender"
-	defer
-	src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js"></script>
-<script class="prerender" defer>
-	document.addEventListener('DOMContentLoaded', function () {
-		renderMathInElement(document.body, {
-			delimiters: [
-				{ left: '$$', right: '$$', display: true },
-				{ left: '$', right: '$', display: false },
-				{ left: '\\(', right: '\\)', display: false },
-				{ left: '\\[', right: '\\]', display: true },
-			],
-			throwOnError: false,
-		});
-	});
-</script>
-{{ end }}
-<link
-	rel="stylesheet"
-	href='{{ "assets/css/style.patched.min.css" | absURL }}' />
+const fs = require('fs');
+const JSDOM = require('jsdom').JSDOM;
+const shiki = require('shiki');
+const autoRender = require('katex/dist/contrib/auto-render.js');
 
-<script class="prerender" defer src="https://unpkg.com/shiki@0.10.1"></script>
-<script class="prerender" defer>
-	document.addEventListener('DOMContentLoaded', highlight);
+function setGlobal(name, value) {
+	(function (globals) {
+		globals[name] = value;
+	})((1, eval)('this'));
+}
+
+const args = process.argv.slice(2);
+
+args.forEach(async (path) => {
+	let buffer = fs.readFileSync(path);
+	let dom = new JSDOM(buffer.toString());
+	await highlight();
+	await renderMath();
+	await removePrerenderScript();
+	console.log('overwriting', path);
+	fs.writeFileSync(path, dom.serialize());
 	async function highlight() {
+		console.log('highlighting code...');
 		let lightColorSet = new Set();
 		let darkColorSet = new Set();
-		let codeBlocks = document.querySelectorAll('pre');
+		let codeBlocks = dom.window.document.querySelectorAll('pre');
 		let highlighter = await shiki.getHighlighter({
 			themes: ['light-plus', 'dark-plus'],
 		});
@@ -93,8 +75,36 @@
 			style += `.latex-dark-auto [data-dark-color="${color}"] { color: ${color}; }\n`;
 		});
 		style += `}\n`;
-		let styleElement = document.createElement('style');
+		let styleElement = dom.window.document.createElement('style');
 		styleElement.innerHTML = style;
-		document.head.appendChild(styleElement);
+		dom.window.document.head.appendChild(styleElement);
+		console.log('done');
 	}
-</script>
+	async function renderMath() {
+		const options = {
+			// customised options
+			// • auto-render specific keys, e.g.:
+			delimiters: [
+				{ left: '$$', right: '$$', display: true },
+				{ left: '$', right: '$', display: false },
+				{ left: '\\(', right: '\\)', display: false },
+				{ left: '\\[', right: '\\]', display: true },
+			],
+			// • rendering keys, e.g.:
+			throwOnError: false,
+		};
+		console.log('rendering math...');
+		setGlobal('document', dom.window.document);
+		autoRender(dom.window.document.body, options);
+		console.log('Done!');
+	}
+	async function removePrerenderScript() {
+		console.log('removing prerender script...');
+		let prerenderScripts =
+			dom.window.document.querySelectorAll('script.prerender');
+		for (let script of prerenderScripts) {
+			script.remove();
+		}
+		console.log('Done!');
+	}
+});
