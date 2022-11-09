@@ -50,6 +50,8 @@ patches = {
         " !important",
         r"(?<=src: url)\('(.*?)'\) format\('woff2'\).*?format\('truetype'\)":
         r"(.\1) format('woff2')",
+        r"@font-face \{[^\}]*Libertinus[^\}]*\}\n\n":
+        "",
         r"(?<=body {)":
         "\n  display: flex;\n  flex-direction: column;",
         r"(?<=padding: )2rem 1.25rem":
@@ -176,32 +178,6 @@ figure {
 
 ::selection {
 	background-color: var(--selection-bg-color);
-}
-
-[data-light-bg] {
-  background: attr(data-light-bg);
-}
-
-[data-light-color] {
-  color: attr(data-light-color color);
-}
-
-.latex-dark [data-dark-bg] {
-  background: attr(data-dark-bg color);
-}
-
-.latex-dark [data-dark-color] {
-  color: attr(data-dark-color color);
-}
-
-@media (prefers-color-scheme: dark) {
-  .latex-dark-auto [data-dark-bg] {
-    background: attr(data-dark-bg color);
-  }
-
-  .latex-dark-auto [data-dark-color] {
-    color: attr(data-dark-color color);
-  }
 }
 """,
     },

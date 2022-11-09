@@ -1,6 +1,7 @@
 <figure>
-	<img src="{{ .Get 0 }}" alt="" class="figure" />
-	{{ with .Get 1 }}
+	<img src='{{ .Get "src" }}' alt="" class="figure" {{ with .Get "width" }}
+	width="{{ . }}" {{ end }} {{ with .Get "height" }} height="{{ . }}" {{ end
+	}} /> {{ with .Get "caption" }}
 	<div class="caption-figure">{{ . | markdownify }}</div>
 	{{ end }}
 </figure>

@@ -116,7 +116,7 @@ Then for each object $A$ of $\mathcal C$, the natural transformation $\operatorn
 Moreover, the isomorphism is natural in $A$ and $F$ when both sides are regarded as functors from $\mathcal C \times \mathbf{Set}^{\mathcal C}$ to $\mathbf{Set}$.
 
 {{< proof >}}
-See https://en.wikipedia.org/wiki/Yoneda_lemma#Proof.
+See [wiki](https://en.wikipedia.org/wiki/Yoneda_lemma#Proof).
 {{< qed >}}
 
 ### Sidenotes
@@ -167,12 +167,12 @@ This sentence is **bold**. If you like semantics, you might go with {{< text str
 ### Figure
 
 ```md
-{{</* figure "https://picsum.photos/800/600" 
-"A sample figure with a descriptive caption by [Lorem Picsum](https://picsum.photos/)" */>}}
+{{</* figure src=https://picsum.photos/800/600 
+caption="A sample figure with a descriptive caption by [Lorem Picsum](https://picsum.photos/)" width=800 height=600 */>}}
 ```
 
-{{< figure "https://picsum.photos/800/600" 
-"A sample figure with a descriptive caption by [Lorem Picsum](https://picsum.photos/)" >}}
+{{< figure src=https://picsum.photos/800/600 
+caption="A sample figure with a descriptive caption by [Lorem Picsum](https://picsum.photos/)" width=800 height=600 >}}
 
 ## Miscellaneous
 ### Scroll Overflow

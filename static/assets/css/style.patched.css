@@ -37,54 +37,6 @@
   src: url(../fonts/LM-bold-italic.woff2) format('woff2');
 }
 
-@font-face {
-  font-family: 'Libertinus';
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url('./fonts/Libertinus-regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: italic;
-  font-weight: normal;
-  font-display: swap;
-  src: url('./fonts/Libertinus-italic.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: normal;
-  font-weight: bold;
-  font-display: swap;
-  src: url('./fonts/Libertinus-bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: italic;
-  font-weight: bold;
-  font-display: swap;
-  src: url('./fonts/Libertinus-bold-italic.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./fonts/Libertinus-semibold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./fonts/Libertinus-semibold-italic.woff2') format('woff2');
-}
-
 /* Box sizing rules */
 *,
 *::before,
@@ -263,7 +215,6 @@ pre {
   background: var(--pre-bg-color) !important;
 }
 pre code {
-  font-size: 95%;
   position: relative;
 }
 kbd {
@@ -707,31 +658,5 @@ figure {
 
 ::selection {
 	background-color: var(--selection-bg-color);
-}
-
-[data-light-bg] {
-  background: attr(data-light-bg);
-}
-
-[data-light-color] {
-  color: attr(data-light-color color);
-}
-
-.latex-dark [data-dark-bg] {
-  background: attr(data-dark-bg color);
-}
-
-.latex-dark [data-dark-color] {
-  color: attr(data-dark-color color);
-}
-
-@media (prefers-color-scheme: dark) {
-  .latex-dark-auto [data-dark-bg] {
-    background: attr(data-dark-bg color);
-  }
-
-  .latex-dark-auto [data-dark-color] {
-    color: attr(data-dark-color color);
-  }
 }
 
