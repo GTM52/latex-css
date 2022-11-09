@@ -1,2 +1,19 @@
-{{ define "main" }} {{ .Content }} {{ partial "list.html" .Site.RegularPages }}
-{{ end }}
+{{ define "head" }}
+<link rel="manifest" href='{{ "manifest.json" | absURL }}' />
+<link rel="apple-touch-icon" href='{{ "assets/img/192x192.png" | absURL }}' />
+<meta name="theme-color" content="#1e1e1e" />
+<script defer>
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker
+			.register('sw.js', { scope: '/latex-css/' })
+			.then(function (registration) {
+				console.log('Service Worker Registered');
+			});
+
+		navigator.serviceWorker.ready.then(function (registration) {
+			console.log('Service Worker Ready');
+		});
+	}
+</script>
+{{ end }} {{ define "main" }} {{ .Content }} {{ partial "list.html" (where
+.Site.RegularPages "Params.hidden" "ne" true) }} {{ end }}

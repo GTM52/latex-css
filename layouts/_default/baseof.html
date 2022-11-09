@@ -4,7 +4,7 @@ $bodyClass = "" }} {{ else if eq .Site.Params.skin "dark" }} {{ $bodyClass =
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		{{ partial "head.html" . }}
+		{{ partial "head.html" . }} {{ block "head" . }} {{ end }}
 	</head>
 	<body class="{{ $bodyClass }}">
 		<header>{{ partial "header.html" . }}</header>

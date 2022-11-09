@@ -1,0 +1,23 @@
+{
+	"name": "LaTeX.css",
+	"short_name": "LaTeX.css",
+	"icons": [
+		{
+			"src": "assets/img/256x256.png",
+			"sizes": "256x256",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "assets/img/512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	],
+	"start_url": "index.html",
+	"display": "fullscreen",
+	"orientation": "any",
+	"background_color": "#1e1e1e",
+	"theme_color": "#1e1e1e"
+}
